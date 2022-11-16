@@ -4,14 +4,17 @@ import SelectTypeForm from "./components/SelectTypeForm";
 import "./styles.css";
 
 export default function App() {
-  const [dataType, setDataType] = useState("");
-
   const [data, setData] = useState(null);
+  const [dataType, setDataType] = useState("");
 
   console.log({ data });
 
   // Write code here.
-  //
+  useEffect(() => {
+    fetch(`https://swapi-new.herokuapp.com/api/${dataType}/`)
+      .then((res) => res.json())
+      .then((apiData) => setData(apiData));
+  }, [setDataType]);
 
   return (
     <div>
